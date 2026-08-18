@@ -1,0 +1,76 @@
+/* Container — fundo escuro, card centralizado */
+.login-container {
+  min-height: 100vh;
+  background-color: #36445d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background-color: #12617C;
+  border-radius: 12px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-logo      { 
+  color: #DC8079;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.login-subtitulo { 
+  color: #94A3B8; 
+  font-size: 0.9rem; 
+  text-align: center; 
+}
+
+.login-input { 
+  background: #EDDEE0; 
+  color: #12617C;
+  border-radius: 6px;
+  padding: 11px 14px; 
+  font-size: 1rem; 
+  outline: none; 
+}
+
+.login-input:focus { background-color: #EDDEE0; }
+
+.login-erro { 
+  color: #EF4444; 
+  font-size: 0.9rem; 
+  text-align: center; 
+}
+
+.login-btn { 
+  background: #DC8079; 
+  color: #EDDEE0; 
+  border: none;
+  border-radius: 6px; 
+  padding: 12px;
+  font-size: 1rem; 
+  font-weight: 700; 
+  cursor: pointer; 
+}
+
+.login-btn:hover { background: #94A3B8; }
+
+.login-aviso { 
+  color: #94A3B8; 
+  font-size: 0.75rem; 
+  text-align: center; 
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  15%,45%,75% { transform: translateX(-8px); }
+  30%,60%,90% { transform: translateX(8px); }
+}
+
+.shake { animation: shake 0.5s ease-in-out; }
+

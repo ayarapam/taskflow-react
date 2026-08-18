@@ -1,0 +1,147 @@
+/* ── RESET ─────────────────────────────────────────────── */
+
+*{
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+/* ── BASE ──────────────────────────────────────────────── */
+
+body{
+    background-color: #36445d;
+    color: white;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ──  CONTAINER ─────────────────────────────────────────── */
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ── MAIN ──────────────────────────────────────────────── */
+
+main {
+  padding: 28px 0;
+  flex: 1;
+}
+
+/* ── MENSAGEM VAZIA ───────────────────────────────────── */
+
+.msg-vazia{
+    color: #94a3b8;
+    margin: 20px 0px 30px 0px;
+    padding: 0px 23px 0px 23px;
+}
+
+/* ── FILTROS ───────────────────────────────── */
+
+.filtro-prioridade{
+    display: flex;
+    gap: 5px;
+    color: #94a3b8;
+    
+}
+
+.btn-filtro{
+    border: none;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #03627e;
+    color: #eddee0;
+}
+
+.btn-filtro:hover{
+    background-color: #94a3b8;
+    color: #03627e;
+}
+
+
+/* ── 9. FORMULARIO ──────────────────────────────────── */
+
+input {
+    flex: 1;
+    color: #dc8079;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0;
+    background-color: #eddee0;
+}
+
+/* ── 15. FOOTER ───────────────────────────────────────────── */
+
+footer {
+    margin-top: 300px;
+    padding: 16px; 
+    text-align: center;
+    color: #94a3b8;
+}
+
+/* ── ESTRUTURA KANBAN ───────────────────────────────────────────── */
+
+.kanban-quadro {
+  display: flex;          
+  gap: 16px;
+  align-items: flex-start; 
+  margin-top: 24px;
+  padding-bottom: 32px;
+  overflow-x: auto;       
+}
+
+/* ── COLUNA INDIVIDUAL ───────────────────────────────────── */
+.kanban-coluna {
+  flex: 1;                
+  min-width: 200px;       
+  background-color: #0E4E63;
+  border: 1px solid #DC8079;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* ── CABEÇALHO DA COLUNA: título + contador ──────────────── */
+.kanban-coluna-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #DC8079;
+}
+
+.kanban-coluna-header h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #DC8079;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── CONTADOR DE TAREFAS NA COLUNA ──────────────────────── */
+.kanban-contador {
+  background-color: #94A3B8;
+  color: #EDDEE0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ── LISTA DE TAREFAS DENTRO DA COLUNA ──────────────────── */
+.kanban-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 60px; 
+}

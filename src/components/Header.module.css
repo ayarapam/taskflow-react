@@ -1,0 +1,25 @@
+header{
+    padding: 24px 32px;
+    border-bottom: 1px solid #03627e;
+    text-align: center;
+    color: #dc8079;
+}
+
+header .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.logo p {
+  color: #94a3b8;
+  font-size: 18px;
+}

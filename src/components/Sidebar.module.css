@@ -1,0 +1,49 @@
+.sidebar {
+  width: 220px; 
+  min-height: 100vh;
+  background-color: #12617C;
+  padding: 24px 16px;
+  position: fixed; 
+  top: 0; left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.logo h1 { color: #DC8079; font-size: 35px; }
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.link {
+  color: #EDDEE0;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.link:hover { background-color: #EDDEE0; color: #12617C; }
+
+.ativo {
+  background-color: #94A3B8;
+  color: #EDDEE0;
+  font-weight: 700;
+}
+
+button{
+    border: none;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: #94A3B8;
+    color: #03627e;
+}
+
+button:hover{
+  background-color: #EDDEE0;
+}
+
