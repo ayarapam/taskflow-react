@@ -15,7 +15,7 @@ function Sobre() {
       <ul>
         <li>React</li>
         <li>Vite</li>
-        <li>Axios</li>
+        <li>Axios - teste</li>
         <li>React Router</li>
       </ul>
 
