@@ -1,9 +1,12 @@
+// =============================================================
+// IMPORTS
+// =============================================================
+
 import Header from './Header';
 import ListaTarefas from './ListaTarefas';
 import { useState, useEffect } from 'react';
 import ModalTarefa from './ModalTarefa';
 import axios from 'axios';
-
 
 // =============================================================
 // 1. ESTADO DA APLICAÇÃO
@@ -15,24 +18,13 @@ function TarefaV1() {
   // ───────────────────────────────────────────────────────────
   const URL_API = 'https://6a85ab4c9c451dc67a63eddd.mockapi.io/tarefas';
 
-  // const [proximoId, setProximoId] = useState(1);
   const [modalAberto, setModalAberto] = useState(false);
   const [tarefaEditando, setTarefaEditando] = useState(null);
   const [colunaAtiva, setColunaAtiva] = useState('afazer');
   const [filtroPrioridade, setFiltroPrioridade] = useState('todas');
   const [tarefas, setTarefas] = useState([]);
-  const [erro, setErro] = useState('')
-  const [carregando, setCarregando] = useState(true)
-  // const [tarefas, setTarefas] = useState (() => {
-  //   const tarefasSalvas = localStorage.getItem('taskflow-tarefas');
-  //   if (!tarefasSalvas) return [];
-  //   const dados = JSON.parse(tarefasSalvas);
-  //   setProximoId(
-  //   dados[dados.length - 1]?.id + 1 || 1,
-  // );
-  //   return Array.isArray(dados) ? dados : [];
-  // });
-
+  const [erro, setErro] = useState('');
+  const [carregando, setCarregando] = useState(true);
 
   // =============================================================
   // 2. EFEITOS
@@ -41,11 +33,6 @@ function TarefaV1() {
   // ───────────────────────────────────────────────────────────
   // 2.1 Salvar tarefas no LocalStorage
   // ───────────────────────────────────────────────────────────
-
-  // useEffect(() => {
-  //   localStorage.setItem('taskflow-tarefas', JSON.stringify(tarefas));
-
-  // }, [tarefas]);
 
   useEffect(() => {
     async function carregarTarefas() {
@@ -112,17 +99,6 @@ function TarefaV1() {
   // 4.1 Salvar / editar tarefa
   // ──────────────────────────────────────────────────────  
 
-  // function salvarTarefa(dados){
-  //  console.log("dados:", dados)
-  //   if (dados.id !== undefined){
-  //     setTarefas(tarefas.map(tarefa => tarefa.id === dados.id ? {...tarefa, ...dados} : tarefa 
-  //     ));
-  //   } else { 
-  //     setTarefas([...tarefas, {...dados, id: proximoId}])
-  //     setProximoId (proximoId + 1)
-  //   };
-  // }
-
   async function salvarTarefa(dados) {
     try {
       if (dados.id !== undefined) {
@@ -147,8 +123,6 @@ function TarefaV1() {
     }
   }
 
-
-
   // ───────────────────────────────────────────────────────────
   // 4.2 Deletar tarefa
   // ───────────────────────────────────────────────────────────
@@ -170,7 +144,6 @@ function TarefaV1() {
       console.error(e);
     }
   }
-
 
   // ───────────────────────────────────────────────────────────
   // 4.3 Mover tarefa entre colunas
@@ -195,7 +168,6 @@ function TarefaV1() {
     }
   }
 
-
   // =============================================================
   // 5. FILTROS
   // =============================================================
@@ -212,8 +184,8 @@ function TarefaV1() {
     <div className='container' id='app'>
 
       {/* ─────────────────────────────────────────────────────
-  6.1 Cabeçalho
-  ───────────────────────────────────────────────────── */}
+      6.1 Cabeçalho
+      ───────────────────────────────────────────────────── */}
       <Header
         titulo='TaskFlow'
         subtitulo='gerenciador de Tarefa 🚀' />
@@ -230,8 +202,8 @@ function TarefaV1() {
 
 
         {/* ───────────────────────────────────────────────────
-  6.2 Filtro de prioridade
-─────────────────────────────────────────────────── */}
+        6.2 Filtro de prioridade
+      ─────────────────────────────────────────────────── */}
         <div className='filtro-prioridade'>
           <label>Filtrar por prioridade:</label>
           <select
@@ -247,8 +219,8 @@ function TarefaV1() {
         </div>
 
         {/* ───────────────────────────────────────────────────
-  6.3 Quadro Kanban
-─────────────────────────────────────────────────── */}
+        6.3 Quadro Kanban
+      ─────────────────────────────────────────────────── */}
         {!carregando && !erro && (<>
           <div className="kanban-quadro">
             <div className="kanban-coluna">
