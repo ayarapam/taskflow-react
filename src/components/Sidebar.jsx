@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 
 function Sidebar (){
-    const { logado, logout } = useAuth();
+    const { token, logout } = useAuth();
     const linkClass = ({isActive}) => 
         isActive ? styles.link + ' ' + styles.ativo : styles.link;
 
@@ -20,10 +20,10 @@ function Sidebar (){
                 <NavLink to= '/login' className={linkClass}>Login</NavLink>
             </nav>
 
-            {logado && (<button onClick={logout}>Sair</button>)}
+            {token && (<button onClick={logout}>Sair</button>)}
 
         </aside>
     )
-}
+} 
 
 export default Sidebar
