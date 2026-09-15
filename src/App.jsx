@@ -5,20 +5,16 @@ import Login from './pages/Login';
 import TarefaV1 from './components/tarefaV1';
 import Sidebar from './components/Sidebar';
 import RotaPrivada from './components/RotaPrivada';
-import { useAuth } from "./contexts/AuthContext";
 
 function App() {
-
-  const { token } = useAuth();
-  console.log(useAuth())
 
   return (
 
     <div className="app-layout">
 
-      {token && <Sidebar />}
+      <Sidebar />
 
-      <main className="app-conteudo" style={{ marginLeft: token ? '220px' : '0' }}>
+      <main className="app-conteudo" >
 
         <Routes>
 
