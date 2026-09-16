@@ -1,12 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router';
 
 
 function Sidebar (){
-    const { token, logout } = useAuth();
+    const { usuario, logout } = useAuth();
+    const navigate = useNavigate();
+    
     const linkClass = ({isActive}) => 
         isActive ? styles.link + ' ' + styles.ativo : styles.link;
+
+    function handleLogout() {
+        logout();
+        navigate('/login');
+    }
 
     return(
         <aside className={styles.sidebar}>
@@ -19,9 +27,11 @@ function Sidebar (){
                 <NavLink to= '/sobre' className={linkClass}>Sobre</NavLink>
                 <NavLink to= '/login' className={linkClass}>Login</NavLink>
             </nav>
-
-            {token && (<button onClick={logout}>Sair</button>)}
-
+            <div className='sidebar-usuario'>
+                <span>Olá, {usuario?.nome ?? 'Usuário'}</span>
+                <button onClick={handleLogout}>Sair</button>
+            </div>
+            {/* {token && (<button onClick={logout}>Sair</button>)} */}
         </aside>
     )
 } 
