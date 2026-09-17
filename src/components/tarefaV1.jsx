@@ -140,15 +140,25 @@ function TarefaV1() {
   // ───────────────────────────────────────────────────────────
   async function moverTarefa(id, novaColuna) {
     try {
-      const resposta = await api.put(
-         `/tarefas/${id}`,
-        { coluna: novaColuna }
-      );
+          const tarefa = tarefas.find(t => t.id === id);
 
-      setTarefas(tarefas.map(t =>
-          t.id === id ? resposta.data : t
-        )
-      );
+    if (!tarefa) return;
+
+    const resposta = await api.put(
+      `/tarefas/${id}`,
+      {
+        texto: tarefa.texto,
+        prioridade: tarefa.prioridade,
+        concluida: tarefa.concluida,
+        coluna: novaColuna
+      }
+    );
+      // const resposta = await api.put(
+      //    `/tarefas/${id}`,
+      //   { coluna: novaColuna }
+      // );
+
+      setTarefas(tarefas.map(t => t.id === id ? resposta.data : t));
 
     } catch (err) {
       setErro('Erro ao mover tarefa. Tente novamente.');
