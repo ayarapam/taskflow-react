@@ -139,11 +139,20 @@ function TarefaV1() {
   // 4.3 Mover tarefa entre colunas
   // ───────────────────────────────────────────────────────────
   async function moverTarefa(id, novaColuna) {
-    const resposta = await api.put(
-      `/tarefas/${id}`,
-      { coluna: novaColuna }
-    );
-    setTarefas(tarefas.map(t => t.id === id ? resposta.data : t));
+    try {
+      const resposta = await api.put(
+         `/tarefas/${id}`,
+        { coluna: novaColuna }
+      );
+
+      setTarefas(tarefas.map(t =>
+          t.id === id ? resposta.data : t
+        )
+      );
+
+    } catch (err) {
+      setErro('Erro ao mover tarefa. Tente novamente.');
+    }
   }
 
 // =============================================================
