@@ -25,7 +25,6 @@ function Sidebar (){
             <nav className={styles.nav}>
                 <NavLink to= '/' className={linkClass}>Dashboard</NavLink>
                 <NavLink to= '/sobre' className={linkClass}>Sobre</NavLink>
-                <NavLink to= '/login' className={linkClass}>Login</NavLink>
             </nav>
             <div className='sidebar-usuario'>
                 <span>Olá, {usuario?.nome ?? 'Usuário'}</span>

@@ -99,7 +99,8 @@ function TarefaV1() {
   // ──────────────────────────────────────────────────────  
 
   async function salvarTarefa(dados) {
-    if (dados.id !== undefined){
+
+    if (dados.id === undefined){
       try {
         const resposta = await api.post('/tarefas', dados);
         setTarefas([...tarefas, resposta.data]);
@@ -108,7 +109,10 @@ function TarefaV1() {
       }
   } else {
     try {
-      const resposta = await api.put(`/tarefas/${dados.id}`, dados);
+      const resposta = await api.put(
+        `/tarefas/${dados.id}`,
+         dados);
+         
       setTarefas(tarefas.map(t =>
         t.id === dados.id ? resposta.data : t
       ));
@@ -117,7 +121,6 @@ function TarefaV1() {
     }
   }
 }
-
 
 // ───────────────────────────────────────────────────────────
 // 4.2 Deletar tarefa
