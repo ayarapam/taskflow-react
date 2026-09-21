@@ -2,16 +2,16 @@
 // IMPORTS
 // =============================================================
 
-import Header from './Header';
-import ListaTarefas from './ListaTarefas';
+import Header from '../components/Header';
+import ListaTarefas from '../components/ListaTarefas';
 import { useState, useEffect } from 'react';
-import ModalTarefa from './ModalTarefa';
+import ModalTarefa from '../components/ModalTarefa';
 import api from '../api';
 
 // =============================================================
 // 1. ESTADO DA APLICAÇÃO
 // =============================================================
-function TarefaV1() {
+function Kanban() {
 
   // ───────────────────────────────────────────────────────────
   // 1.1 Estados principais
@@ -99,7 +99,6 @@ function TarefaV1() {
   // ──────────────────────────────────────────────────────  
 
   async function salvarTarefa(dados) {
-
     if (dados.id === undefined){
       try {
         const resposta = await api.post('/tarefas', dados);
@@ -309,7 +308,7 @@ return (
         6.5 Rodapé
     ───────────────────────────────────────────────────── */}
     <footer>
-      <p>TaskFlow 2026 - Prof. Alan Glei</p>
+      <p>TaskFlow 2026 - Aluna: Ayara Dantas</p>
     </footer>
 
   </div>
@@ -318,4 +317,4 @@ return (
 
 
 
-export default TarefaV1
+export default Kanban

@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Sobre from './pages/Sobre';
 import Login from './pages/Login';
-import TarefaV1 from './components/tarefaV1';
+import TarefaV1 from './pages/Kanban';
 import Sidebar from './components/Sidebar';
 import RotaPrivada from './components/RotaPrivada';
 import { useAuth } from "./contexts/AuthContext";
