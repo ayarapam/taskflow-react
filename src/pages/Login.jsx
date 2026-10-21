@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
 import "./Login.css";
-import api from '../api';
+import api, { mensagensDeErro }from '../api';
+
 
 function Login() {
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState("");
+  const [senha_hash, setSenha] = useState("");
   const [erro, setErro] = useState("");
   const { login } = useAuth();
   const [shake, setShake] = useState(false);
@@ -15,9 +16,9 @@ function Login() {
   async function handleLogin() {
     setErro('')
     try {
-      const resposta = await api.post('/auth/login', {
+      const resposta = await api.post('auth/login', {
         email,
-        senha,
+        senha_hash,
       });
 
       const {token, usuario} = resposta.data;
@@ -25,7 +26,7 @@ function Login() {
       navigate('/')
 
     } catch (err){
-      setErro (err.response?.data?.erro || 'Erro ao fazer login');
+      setErro(mensagensDeErro(err).join(" "));
       setShake(true);
       setTimeout (() => setShake(false), 500)
     }
@@ -51,7 +52,7 @@ function Login() {
           className="login-input"
           type="password"
           placeholder="senha"
-          value={senha}
+          value={senha_hash}
           onChange={(e) => setSenha(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleLogin()}
         />

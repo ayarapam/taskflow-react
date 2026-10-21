@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import ListaTarefas from '../components/ListaTarefas';
 import { useState, useEffect } from 'react';
 import ModalTarefa from '../components/ModalTarefa';
-import api from '../api';
+import api, { mensagensDeErro }from '../api';
 
 // =============================================================
 // 1. ESTADO DA APLICAÇÃO
@@ -24,6 +24,9 @@ function Kanban() {
   const [tarefas, setTarefas] = useState([]);
   const [erro, setErro] = useState('');
   const [carregando, setCarregando] = useState(true);
+  const [listaPrioridades, setListaPrioridades] = useState([]);
+  const [listaUsuarios, setListaUsuarios] = useState([]);
+  const [listaProjetos, setListaProjetos] = useState([]);
 
   // =============================================================
   // 2. EFEITOS
@@ -39,9 +42,19 @@ function Kanban() {
         setCarregando(true);
         setErro('');
 
-        const resposta = await api.get('/tarefas');
+        const [respPrioridades, respTarefas, respUsuarios, respProjetos] =
 
-        setTarefas(resposta.data);
+          await Promise.all([
+            api.get("/prioridades"),
+            api.get("/tarefas"),
+            api.get("/usuarios"),
+            api.get("/projetos"),
+          ]);
+
+        setListaPrioridades(respPrioridades.data);
+        setTarefas(respTarefas.data);
+        setListaUsuarios(respUsuarios.data);
+        setListaProjetos(respProjetos.data);
 
       } catch (e) {
         setErro('Erro ao carregar tarefas. Verifique a conexao.');
@@ -99,220 +112,204 @@ function Kanban() {
   // ──────────────────────────────────────────────────────  
 
   async function salvarTarefa(dados) {
-    if (dados.id === undefined){
-      try {
-        const resposta = await api.post('/tarefas', dados);
-        setTarefas([...tarefas, resposta.data]);
-      } catch (err) {
-        setErro('Erro ao criar tarefa.');
-      }
-  } else {
-    try {
-      const resposta = await api.put(
-        `/tarefas/${dados.id}`,
-         dados);
-         
-      setTarefas(tarefas.map(t =>
-        t.id === dados.id ? resposta.data : t
-      ));
-    } catch (err) {
-      setErro('Erro ao editar tarefa.');
+    if (dados.id){
+      const resposta = await api.put(`/tarefas/${dados.id}`, dados);
+      setTarefas(tarefas.map((t) => (
+        t.id === dados.id 
+        ? resposta.data 
+        : t)));
+    } else {
+      const resposta = await api.post('/tarefas', dados);
+      setTarefas([...tarefas, resposta.data]);
     }
   }
-}
 
-// ───────────────────────────────────────────────────────────
-// 4.2 Deletar tarefa
-// ───────────────────────────────────────────────────────────
+  // ───────────────────────────────────────────────────────────
+  // 4.2 Deletar tarefa
+  // ───────────────────────────────────────────────────────────
 
-  async function deletarTarefa(id) {
+  const deletarTarefa = async (id) => {
     try {
       await api.delete(`/tarefas/${id}`);
-      setTarefas(tarefas.filter(t => t.id !== id));
+      setTarefas(tarefas.filter((t) => t.id !== id));
     } catch (err) {
-      setErro('Erro ao deletar tarefa.');
+      alert(mensagensDeErro(err).join("\n"));
     }
-  }
+  };
 
   // ───────────────────────────────────────────────────────────
   // 4.3 Mover tarefa entre colunas
   // ───────────────────────────────────────────────────────────
-  async function moverTarefa(id, novaColuna) {
+   const moverTarefa = async (id, novaColuna) => {
+      const tarefa = tarefas.find((t) => t.id === id);
     try {
-          const tarefa = tarefas.find(t => t.id === id);
-
-    if (!tarefa) return;
-
-    const resposta = await api.put(
-      `/tarefas/${id}`,
-      {
-        texto: tarefa.texto,
-        prioridade: tarefa.prioridade,
-        concluida: tarefa.concluida,
-        coluna: novaColuna
-      }
-    );
-      // const resposta = await api.put(
-      //    `/tarefas/${id}`,
-      //   { coluna: novaColuna }
-      // );
-
-      setTarefas(tarefas.map(t => t.id === id ? resposta.data : t));
-
+      const resposta = await api.put(
+        `/tarefas/${id}`,
+        {
+          ...tarefa,
+          coluna: novaColuna
+        }
+      );
+      setTarefas(tarefas.map((t) => (t.id === id ? resposta.data : t)));
     } catch (err) {
-      setErro('Erro ao mover tarefa. Tente novamente.');
-    }
-  }
+      alert(mensagensDeErro(err).join("\n"));}
+  };
 
-// =============================================================
-// 5. FILTROS
-// =============================================================
+  // =============================================================
+  // 5. FILTROS
+  // =============================================================
 
-const tarefasFiltradas = tarefas.filter((tarefa) => {
-  if (filtroPrioridade === 'todas') return true;
-  return tarefa.prioridade === filtroPrioridade;
-});
+  const tarefasFiltradas = tarefas.filter((tarefa) => {
+    if (filtroPrioridade === 'todas') return true;
+    return tarefa.prioridade === filtroPrioridade;
+  });
 
-// =============================================================
-// 6. INTERFACE
-// =============================================================
-return (
-  <div className='container' id='app'>
+  // =============================================================
+  // 6. INTERFACE
+  // =============================================================
+  return (
+    <div className='container' id='app'>
 
-    {/* ─────────────────────────────────────────────────────
+      {/* ─────────────────────────────────────────────────────
       6.1 Cabeçalho
       ───────────────────────────────────────────────────── */}
-    <Header
-      titulo='TaskFlow'
-      subtitulo='gerenciador de Tarefa 🚀' />
+      <Header
+        titulo='TaskFlow'
+        subtitulo='gerenciador de Tarefa 🚀' />
 
-    <main className='container'>
-      {carregando && (
-        <p style={{ textAlign: 'center', color: '#94A3B8' }}>
-          Carregando tarefas...
-        </p>)}
+      <main className='container'>
+        {carregando && (
+          <p style={{ textAlign: 'center', color: '#94A3B8' }}>
+            Carregando tarefas...
+          </p>)}
 
-      {erro && (
-        <p style={{ textAlign: 'center', color: '#EF4444' }}>{erro}</p>
-      )}
+        {erro && (
+          <p style={{ textAlign: 'center', color: '#EF4444' }}>{erro}</p>
+        )}
 
 
-      {/* ───────────────────────────────────────────────────
+        {/* ───────────────────────────────────────────────────
         6.2 Filtro de prioridade
       ─────────────────────────────────────────────────── */}
-      <div className='filtro-prioridade'>
-        <label>Filtrar por prioridade:</label>
-        <select
-          className='btn-filtro'
-          value={filtroPrioridade}
-          onChange={(e) => setFiltroPrioridade(e.target.value)}
-        >
-          <option value='todas'>Todas</option>
-          <option value='alta'>Alta</option>
-          <option value='media'>Media</option>
-          <option value='baixa'>Baixa</option>
-        </select>
-      </div>
-
-      {/* ───────────────────────────────────────────────────
-        6.3 Quadro Kanban
-      ─────────────────────────────────────────────────── */}
-      {!carregando && !erro && (<>
-        <div className="kanban-quadro">
-          <div className="kanban-coluna">
-
-            {/* =================================================
-                  COLUNA: A FAZER
-              ================================================= */}
-            <div className="kanban-coluna-header">
-              <h3>A Fazer</h3>
-              <span className="kanban-contador">
-                {tarefas.filter((tarefa) => tarefa.coluna === "afazer").length}
-              </span>
-              <button className='kanban-btn-add'
-                onClick={() => abrirModalCriar('afazer')}>+</button>
-            </div>
-
-            <ListaTarefas
-              tarefas={tarefasFiltradas.filter((tarefa) => tarefa.coluna === "afazer")}
-              onDeletar={deletarTarefa}
-              onEditar={abrirModalEditar}
-              onMover={moverTarefa}
-              colunaAnterior={null}
-              colunaProxima="andamento"
-            />
-          </div>
-
-          {/* =================================================
-                COLUNA: EM ANDAMENTO
-            ================================================= */}
-
-          <div className="kanban-coluna">
-            <div className="kanban-coluna-header">
-              <h3>Em Andamento</h3>
-              <span className="kanban-contador">
-                {tarefas.filter(
-                  (tarefa) => tarefa.coluna === "andamento").length}
-              </span>
-              <button className='kanban-btn-add'
-                onClick={() => abrirModalCriar('andamento')}>+</button>
-            </div>
-            <ListaTarefas
-              tarefas={tarefasFiltradas.filter((tarefa) => tarefa.coluna === "andamento")}
-              onDeletar={deletarTarefa}
-              onEditar={abrirModalEditar}
-              onMover={moverTarefa}
-              colunaAnterior="afazer"
-              colunaProxima="concluido"
-            />
-          </div>
-
-          {/* =================================================
-                COLUNA: CONCLUÍDO
-            ================================================= */}
-
-          <div className="kanban-coluna">
-            <div className="kanban-coluna-header">
-              <h3>Concluído</h3>
-              <span className="kanban-contador">
-                {tarefas.filter((tarefa) => tarefa.coluna === "concluido").length}
-              </span>
-              <button className='kanban-btn-add'
-                onClick={() => abrirModalCriar('concluido')}>+</button>
-            </div>
-            <ListaTarefas
-              tarefas={tarefasFiltradas.filter((tarefa) => tarefa.coluna === "concluido")}
-              onDeletar={deletarTarefa}
-              onEditar={abrirModalEditar}
-              onMover={moverTarefa}
-              colunaAnterior="andamento"
-              colunaProxima={null}
-            />
-          </div>
+        <div className='filtro-prioridade'>
+          <label>Filtrar por prioridade:</label>
+          <select
+            className='btn-filtro'
+            value={filtroPrioridade}
+            onChange={(e) => setFiltroPrioridade(e.target.value)}
+          >
+            <option value='todas'>Todas</option>
+            <option value='alta'>Alta</option>
+            <option value='media'>Media</option>
+            <option value='baixa'>Baixa</option>
+          </select>
         </div>
 
         {/* ───────────────────────────────────────────────────
+        6.3 Quadro Kanban
+      ─────────────────────────────────────────────────── */}
+        {!carregando && !erro && (<>
+          <div className="kanban-quadro">
+            <div className="kanban-coluna">
+
+              {/* =================================================
+                  COLUNA: A FAZER
+              ================================================= */}
+              <div className="kanban-coluna-header">
+                <h3>A Fazer</h3>
+                <span className="kanban-contador">
+                  {tarefas.filter((tarefa) => tarefa.coluna === "afazer").length}
+                </span>
+                <button className='kanban-btn-add'
+                  onClick={() => abrirModalCriar('afazer')}>+</button>
+              </div>
+
+              <ListaTarefas
+                tarefas={tarefasFiltradas.filter((tarefa) => tarefa.coluna === "afazer")}
+                prioridades={listaPrioridades}
+                onDeletar={deletarTarefa}
+                onEditar={abrirModalEditar}
+                onMover={moverTarefa}
+                colunaAnterior={null}
+                colunaProxima="andamento"
+              />
+            </div>
+
+            {/* =================================================
+                COLUNA: EM ANDAMENTO
+            ================================================= */}
+
+            <div className="kanban-coluna">
+              <div className="kanban-coluna-header">
+                <h3>Em Andamento</h3>
+                <span className="kanban-contador">
+                  {tarefas.filter(
+                    (tarefa) => tarefa.coluna === "andamento").length}
+                </span>
+                <button className='kanban-btn-add'
+                  onClick={() => abrirModalCriar('andamento')}>+</button>
+              </div>
+              <ListaTarefas
+                tarefas={tarefasFiltradas.filter((tarefa) => tarefa.coluna === "andamento")}
+                prioridades={listaPrioridades}
+                onDeletar={deletarTarefa}
+                onEditar={abrirModalEditar}
+                onMover={moverTarefa}
+                colunaAnterior="afazer"
+                colunaProxima="concluido"
+              />
+            </div>
+
+            {/* =================================================
+                COLUNA: CONCLUÍDO
+            ================================================= */}
+
+            <div className="kanban-coluna">
+              <div className="kanban-coluna-header">
+                <h3>Concluído</h3>
+                <span className="kanban-contador">
+                  {tarefas.filter((tarefa) => tarefa.coluna === "concluido").length}
+                </span>
+                <button className='kanban-btn-add'
+                  onClick={() => abrirModalCriar('concluido')}>+</button>
+              </div>
+              <ListaTarefas
+                tarefas={tarefasFiltradas.filter((tarefa) => tarefa.coluna === "concluido")}
+                prioridades={listaPrioridades}
+                onDeletar={deletarTarefa}
+                onEditar={abrirModalEditar}
+                onMover={moverTarefa}
+                colunaAnterior="andamento"
+                colunaProxima={null}
+              />
+            </div>
+          </div>
+
+          {/* ───────────────────────────────────────────────────
             6.4 Modal de tarefa
         ─────────────────────────────────────────────────── */}
-        <ModalTarefa
-          aberto={modalAberto}
-          onFechar={() => setModalAberto(false)}
-          onSalvar={salvarTarefa}
-          tarefa={tarefaEditando}
-          coluna={colunaAtiva}
-        />
-      </>)}
-    </main>
+          <ModalTarefa
+            aberto={modalAberto}
+            onFechar={() => setModalAberto(false)}
+            onSalvar={salvarTarefa}
+            tarefa={tarefaEditando}
+            coluna={colunaAtiva}
+            prioridades={listaPrioridades}
+            usuarios={listaUsuarios}
+            projetos={listaProjetos}
+          />
+        </>)}
+      </main>
 
-    {/* ─────────────────────────────────────────────────────
+      {/* ─────────────────────────────────────────────────────
         6.5 Rodapé
     ───────────────────────────────────────────────────── */}
-    <footer>
-      <p>TaskFlow 2026 - Aluna: Ayara Dantas</p>
-    </footer>
+      <footer>
+        <p>TaskFlow 2026 - Aluna: Ayara Dantas</p>
+      </footer>
 
-  </div>
-);
+    </div>
+  );
 }
 
 
