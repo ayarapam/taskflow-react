@@ -70,15 +70,15 @@ function Kanban() {
   // 2.2 Atualizar título da página
   // ───────────────────────────────────────────────────────────
 
-  useEffect(() => {
-    const pendentes = tarefas.filter((tarefa) => tarefa.coluna === 'afazer' ||
-      tarefa.coluna === 'andamento').length;
-    if (pendentes > 0) {
-      document.title = `(${pendentes}) TaskFlow`;
-    } else {
-      document.title = 'TaskFlow';
-    }
-  }, [tarefas]);
+  // useEffect(() => {
+  //   const pendentes = tarefas.filter((tarefa) => tarefa.coluna === 'afazer' ||
+  //     tarefa.coluna === 'andamento').length;
+  //   if (pendentes > 0) {
+  //     document.title = `(${pendentes}) TaskFlow`;
+  //   } else {
+  //     document.title = 'TaskFlow';
+  //   }
+  // }, [tarefas]);
 
   // =============================================================
   // 3. FUNÇÕES DO MODAL
@@ -132,8 +132,8 @@ function Kanban() {
     try {
       await api.delete(`/tarefas/${id}`);
       setTarefas(tarefas.filter((t) => t.id !== id));
-    } catch (err) {
-      alert(mensagensDeErro(err).join("\n"));
+    } catch (e) {
+      alert(mensagensDeErro(e).join("\n"));
     }
   };
 
@@ -151,8 +151,8 @@ function Kanban() {
         }
       );
       setTarefas(tarefas.map((t) => (t.id === id ? resposta.data : t)));
-    } catch (err) {
-      alert(mensagensDeErro(err).join("\n"));}
+    } catch (e) {
+      alert(mensagensDeErro(e).join("\n"));}
   };
 
   // =============================================================

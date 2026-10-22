@@ -25,16 +25,50 @@
 
 .card h2 { color: #DC8079; font-size: 1.2rem; }
 
-.card input, .card select {
+.card input, .card select, .card textarea {
     background: #EDDEE0; color: #0E4E63;
     border: 1px solid #DC8079; border-radius: 18px;
     padding: 10px 14px; font-size: 1rem;
     font-family: inherit; outline: none;
 }
 
-.card input:focus, .card select:focus { border-color: #38BDF8; }
-.cidade { color: #64748B; font-size: 0.8rem; }
+/* .card input:focus, .card select:focus, .card textarea:focus { border-color: #38BDF8; } */
+/* .cidade { color: #64748B; font-size: 0.8rem; } */
 .botoes { display: flex; gap: 10px; justify-content: flex-end; }
+
+.card textarea {
+  resize: vertical;
+  min-height: 96px;
+  max-height: 260px;
+  line-height: 1.5;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  color: #94A3B8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.erros {
+  list-style: none;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid #EF4444;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #FCA5A5;
+  font-size: 0.85rem;
+  display: flex; flex-direction: column; gap: 4px;
+}
+
+.botoes button:disabled { opacity: 0.6; cursor: wait; }
 
 .botoes button:first-child {
     background: none; 

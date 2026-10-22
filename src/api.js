@@ -24,7 +24,6 @@ api.interceptors.response.use(
     }
 );
 
-//Uma função para ler os erros da API
 export function mensagensDeErro(erro) {
     const dados = erro.response?.data?.erro;
 

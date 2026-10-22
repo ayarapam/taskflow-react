@@ -1,4 +1,5 @@
 .tarefa {
+    --cor-prioridade: #94A3B8;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -7,6 +8,7 @@
     background-color: #03627e;
     margin-bottom: 8px;
     border-radius: 10px;
+    border-left: 4px solid var(--cor-prioridade);
     list-style: none;
     min-width: 0;
 }
@@ -23,6 +25,7 @@
     font-size: 1rem;
     cursor: pointer;
     word-break: break-word;
+    white-space: pre-wrap;
 }
 
 .cidade {
@@ -45,6 +48,8 @@
     border-radius: 12px;
     letter-spacing: 0.05em;
     font-weight: 600;
+    color: var(--cor-prioridade);
+    background-color: color-mix(in srgb, var(--cor-prioridade) 15%, transparent);
 }
 
 .btnDeletar, .btnMover {
@@ -63,12 +68,41 @@
 }
 
 
-.concluida {
-    opacity: 20%;
+.tarefa.concluida {
+  opacity: 0.5;
 }
 
+.tarefa.concluida .texto-tarefa {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
 
-.alta {
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.8rem;
+  color: #CBD5E1;
+}
+
+.infoItem {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.infoRotulo {
+  color: #64748B;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  min-width: 92px;
+}  
+
+
+/* .alta {
     border-left: 5px solid #BB564C;
     color: #fff;
 }
@@ -97,5 +131,5 @@
 .badge-baixa {
     background-color:  #658A4A;
     color: #03627e;
-}
+} */
 

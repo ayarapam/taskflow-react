@@ -3,15 +3,16 @@ import { createContext, useContext, useState } from "react";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-    const [token, setToken] = useState(
-        localStorage.getItem('token')
-    );
+  const [token, setToken] = useState(
+    () => localStorage.getItem('token') || null
+  );
+
     const [usuario, setUsuario] = useState(null);
 
-    function login(dadosUsuario, tokenRecebido) {
+    function login(dadosUsuario, newToken) {
         setUsuario(dadosUsuario);
-        setToken(tokenRecebido);
-        localStorage.setItem('token', tokenRecebido);
+        setToken(newToken);
+        localStorage.setItem('token', newToken);
     }
 
     function logout() {
@@ -20,8 +21,10 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('token');
     }
 
+     const logado = !!token;
+
     return (
-        <AuthContext.Provider value={{ token, usuario, login, logout }}>
+        <AuthContext.Provider value={{ token, usuario, login, logout, logado }}>
             {children}
         </AuthContext.Provider>
     );
