@@ -27,7 +27,7 @@ function Sidebar (){
                 <NavLink to= '/sobre' className={linkClass}>Sobre</NavLink>
             </nav>
             <div className='sidebar-usuario'>
-                <span>Olá, {usuario?.nome ?? 'Usuário'}</span>
+                <span className='ola'>Olá, {usuario?.nome ?? 'Usuário'}</span>
                 <button onClick={handleLogout}>Sair</button>
             </div>
             {/* {token && (<button onClick={logout}>Sair</button>)} */}

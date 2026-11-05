@@ -43,13 +43,13 @@ function TarefaItem({
           {usuario && (
             <span className={styles.infoItem}>
               <span className={styles.infoRotulo}>Responsável</span>
-              {usuario}
+               <span className={styles.infoValor}>{usuario}</span>
             </span>
           )}
           {projeto && (
             <span className={styles.infoItem}>
               <span className={styles.infoRotulo}>Projeto</span>
-              {projeto}
+              <span className={styles.infoValor}>{projeto}</span>
             </span>
           )}
         </div>

@@ -160,10 +160,21 @@ function Kanban() {
   // =============================================================
 
   const tarefasFiltradas = tarefas.filter((tarefa) => {
-    if (filtroPrioridade === 'todas') return true;
-    return tarefa.prioridade === filtroPrioridade;
-  });
+    if (filtroPrioridade === "todas") return true;
 
+    const prioridade = tarefa.prioridade
+        ?.toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    const prioridadeNormalizada = {
+        baixo: "baixa",
+        medio: "media",
+        alta: "alta"
+    };
+
+    return prioridadeNormalizada[prioridade] === filtroPrioridade;
+});
   // =============================================================
   // 6. INTERFACE
   // =============================================================
