@@ -1,14 +1,14 @@
 /* Container — fundo escuro, card centralizado */
 .login-container {
   min-height: 100vh;
-  background-color: #36445d;
-  display: flex;
+  background-image: linear-gradient(rgba(30, 41, 59, 90%), rgba(30, 41, 59, 90%)),
+    url('/src/assets/fundo.png');  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .login-card {
-  background-color: #12617C;
+  background-color: rgba(131, 83, 235, 20%); 
   border-radius: 12px;
   padding: 40px 36px;
   width: 100%;
@@ -19,7 +19,7 @@
 }
 
 .login-logo      { 
-  color: #DC8079;
+  color: #F1ADFD;
   font-size: 2rem;
   text-align: center;
 }
@@ -48,7 +48,7 @@
 }
 
 .login-btn { 
-  background: #DC8079; 
+  background: #F1ADFD; 
   color: #EDDEE0; 
   border: none;
   border-radius: 6px; 

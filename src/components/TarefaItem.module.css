@@ -4,10 +4,11 @@
     /* align-items: stretch; */
     gap: 10px;
     padding: 12px 18px;
-    background-color: #03627e;
+    /* background-color: rgba(131, 83, 235, 40%); */
+    background-color: rgba(104, 104, 104, 0.2);
     margin-bottom: 8px;
     border-radius: 10px;
-    border-left: 4px solid var(--cor-prioridade);
+    border: 2px solid var(--cor-prioridade);
     list-style: none;
     min-width: 0;
 }

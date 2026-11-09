@@ -12,8 +12,8 @@
 
 
 .card {
-    background: #0E4E63;
-    border: 1px solid #DC8079;
+    background: #4B127C;
+    border: 1px solid #F1ADFD;
     border-radius: 12px;
     padding: 28px 32px;
     width: 100%;
@@ -23,11 +23,11 @@
     gap: 14px;
 }
 
-.card h2 { color: #DC8079; font-size: 1.2rem; }
+.card h2 { color: #F1ADFD; font-size: 1.2rem; }
 
 .card input, .card select, .card textarea {
     background: #EDDEE0; color: #0E4E63;
-    border: 1px solid #DC8079; border-radius: 18px;
+    border: 1px solid #F1ADFD; border-radius: 18px;
     padding: 10px 14px; font-size: 1rem;
     font-family: inherit; outline: none;
 }
@@ -81,7 +81,7 @@
 
 .botoes button:last-child {
     background: #EDDEE0; 
-    color: #0E4E63; 
+    color: #4B127C; 
     border: none;
     border-radius: 6px; 
     padding: 9px 18px;

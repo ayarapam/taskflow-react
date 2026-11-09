@@ -10,6 +10,12 @@
 
 body{
     background-color: #36445d;
+    background-image: linear-gradient(rgba(30, 41, 59, 90%), rgba(30, 41, 59, 90%)),
+        url('/src/assets/fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: white;
     font-family: 'Inter', Arial, sans-serif;
     font-size: 16px;
@@ -56,13 +62,13 @@ main {
     border: none;
     padding: 5px;
     border-radius: 8px;
-    background-color: #03627e;
+    background-color: #8353EB;
     color: #eddee0;
 }
 
 .btn-filtro:hover{
     background-color: #94a3b8;
-    color: #03627e;
+    color: #8353EB;
 }
 
 
@@ -102,10 +108,10 @@ footer {
 .kanban-coluna {
   flex: 1;                
   min-width: 200px;       
-  background-color: #0E4E63;
-  border: 1px solid #DC8079;
+  border: 1px solid #8353EB;
   border-radius: 8px;
   padding: 12px;
+  background-color: rgba(131, 83, 235, 20%); 
 }
 
 /* ── CABEÇALHO DA COLUNA: título + contador ──────────────── */
@@ -115,13 +121,13 @@ footer {
   align-items: center;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #DC8079;
+  border-bottom: 1px solid #F1ADFD;
 }
 
 .kanban-coluna-header h3 {
   font-size: 0.8rem;
   font-weight: 700;
-  color: #DC8079;
+  color: #F1ADFD;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }

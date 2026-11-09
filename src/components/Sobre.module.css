@@ -3,13 +3,13 @@
   max-width: 80%;
   margin: 60px auto;
   padding: 40px;
-  background-color: #12617C;
+  background-color: #4B127C;
   border-radius: 12px;
   color: #EDDEE0;
 }
 
 .container h1 {
-  color: #DC8079;
+  color: #F1ADFD;
   font-size: 2.2rem;
   margin-bottom: 20px;
 }
@@ -19,7 +19,7 @@
   font-size: 1.3rem;
   margin-top: 30px;
   margin-bottom: 12px;
-  border-bottom: 1px solid #DC8079;
+  border-bottom: 1px solid #F1ADFD;
   padding-bottom: 8px;
 }
 
@@ -39,6 +39,6 @@
 }
 
 .container li::marker {
-  color: #DC8079;
+  color: #F1ADFD;
 }
 
