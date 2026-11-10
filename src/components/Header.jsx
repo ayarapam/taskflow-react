@@ -1,6 +1,6 @@
 import styles from './Header.module.css';
 
-function Header({ titulo, subtitulo = "Informe o subtítulo"}) {
+function Header() {
     // const Total = tarefas.length;
     // const Pendentes = tarefas.filter(tarefa => !tarefa.concluida_em).length;
     // const Concluidas = tarefas.filter(tarefa => tarefa.concluida_em).length;
