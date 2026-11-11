@@ -51,6 +51,12 @@ function ModalTarefa({
 
     async function handleSalvar() {
         setErros([]);
+
+        if (!texto.trim()) {
+            setErros(["O campo 'texto' é obrigatório"]);
+            return;
+        }
+
         setSalvando(true);
         try {
             await onSalvar({
