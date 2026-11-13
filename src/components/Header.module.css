@@ -1,26 +1,65 @@
 
 header{
-    padding: 24px 32px;
-    border-bottom: 1px solid #8353EB;
     text-align: center;
-    color: #8353EB;
 }
 
-header .container {
+
+/* header .logo {
+  background-color: #374965;
+
+} */
+
+/* 
+header .banner {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+header .banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+} */
+
+
+/* tests */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.header {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: 300px;
+  background-color: #374965; /* Altere para a cor desejada aqui */
+  
+  /* Cria o efeito de ondas na parte inferior */
+  --mask:
+    radial-gradient(125px at 50% calc(100% - 125px),#000 99.5%,#0000 100.5%) calc(50% - 40px) 0/210px 100%,
+    radial-gradient(80px at 50% calc(100% + 40px),#0000 99%,#000 101%) 50% calc(100% - 20px)/60px 100% repeat-x;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+}
+
+/* Logo */
+.logo {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
 }
 
-.logo h1 {
-  font-size: 50px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 5px;
+.logo img {
+  width: 240px;
+  height: auto;
 }
 
-.logo p {
-  color: #94a3b8;
-  font-size: 18px;
-}
+
+
+
