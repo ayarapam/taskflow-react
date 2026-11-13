@@ -2,7 +2,7 @@
   position: fixed;
   width: 220px;
   height: 100vh;
-  background-color: rgba(131, 83, 235, 20%);
+  background-color: rgba(55, 73, 101, 50%);
   padding: 24px 16px;
   top: 0;
   left: 0;
@@ -26,7 +26,7 @@
 }
 
 .logo h1 {
-  color: #F1ADFD;
+  color: #F5E6D2;
   font-size: 35px;
 }
 
@@ -46,12 +46,12 @@
 }
 
 .link:hover {
-  background-color: #8EFFFE;
-  color: #485BF6;
+  background-color: #F5E6D2;
+  color: #374965;
 }
 
 .ativo {
-  background-color: #F1ADFD;
+  background-color: #374965;
   color: #8EFFFE;
   font-weight: 700;
 }
@@ -66,4 +66,8 @@ button {
 
 button:hover {
   background-color: #EDDEE0;
+}
+
+.ola{
+  padding: 10px; 
 }

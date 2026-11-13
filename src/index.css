@@ -1,28 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 /* ── RESET ─────────────────────────────────────────────── */
 
-*{
-  box-sizing: border-box; 
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 /* ── BASE ──────────────────────────────────────────────── */
 
-body{
-    background-color: #36445d;
-    background-image: linear-gradient(rgba(30, 41, 59, 90%), rgba(30, 41, 59, 90%)),
-        url('/src/assets/fundo.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: white;
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+body {
+  background-color: #36445d;
+  background-image: linear-gradient(rgba(30, 41, 59, 90%), rgba(30, 41, 59, 90%)),
+    url('/src/assets/fundo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ──  CONTAINER ─────────────────────────────────────────── */
@@ -40,78 +43,88 @@ main {
   flex: 1;
 }
 
+main.app-conteudo {
+  padding-top: 0;
+}
+
 /* ── MENSAGEM VAZIA ───────────────────────────────────── */
 
-.msg-vazia{
-    color: #94a3b8;
-    margin: 20px 0px 30px 0px;
-    padding: 0px 23px 0px 23px;
+.msg-vazia {
+  color: #94a3b8;
+  margin: 20px 0px 30px 0px;
+  padding: 0px 23px 0px 23px;
 }
 
 /* ── FILTROS ───────────────────────────────── */
 
-.filtro-prioridade{
-    margin: 10px;
-    display: flex;
-    gap: 5px;
-    color: #94a3b8;
-    
+.filtro-prioridade {
+  margin: 60px 0px 50px 0px;
+  display: flex;
+  gap: 5px;
+  color: #fff;
+  font-family: 'Abel', sans-serif;
+  font-size: 20px;
 }
 
-.btn-filtro{
-    border: none;
-    padding: 5px;
-    border-radius: 8px;
-    background-color: #8353EB;
-    color: #eddee0;
+.btn-filtro {
+  border: none;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: #374965;
+  color: #eddee0;
+  font-family: 'Abel', sans-serif;
+  font-size: 18px;
 }
 
-.btn-filtro:hover{
-    background-color: #94a3b8;
-    color: #8353EB;
+.btn-filtro:hover {
+  background-color: #374965;
+  color: #fff;
 }
 
 
 /* ── 9. FORMULARIO ──────────────────────────────────── */
 
 input {
-    flex: 1;
-    color: #dc8079;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 0;
-    background-color: #eddee0;
+  flex: 1;
+  color: #dc8079;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0;
+  background-color: #eddee0;
 }
 
 /* ── 15. FOOTER ───────────────────────────────────────────── */
 
 footer {
-    margin-top: 300px;
-    padding: 16px; 
-    text-align: center;
-    color: #94a3b8;
+  margin-top: 300px;
+  padding: 16px;
+  text-align: center;
+  color: #94a3b8;
 }
 
 /* ── ESTRUTURA KANBAN ───────────────────────────────────────────── */
 
 .kanban-quadro {
-  display: flex;          
+  display: flex;
   gap: 16px;
-  align-items: flex-start; 
+  align-items: flex-start;
   margin-top: 24px;
   padding-bottom: 32px;
-  overflow-x: auto;       
+  overflow-x: auto;
 }
 
 /* ── COLUNA INDIVIDUAL ───────────────────────────────────── */
 .kanban-coluna {
-  flex: 1;                
-  min-width: 200px;       
-  border: 1px solid #8353EB;
+  flex: 1;
+  min-width: 200px;
   border-radius: 8px;
   padding: 12px;
-  background-color: rgba(131, 83, 235, 20%); 
+  background-color: rgba(55, 73, 101, 50%);
+}
+
+#andamento{
+  background-color: rgba(245, 230, 210, 12%);
 }
 
 /* ── CABEÇALHO DA COLUNA: título + contador ──────────────── */
@@ -121,25 +134,29 @@ footer {
   align-items: center;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #F1ADFD;
+  border-bottom: 1px solid #F5E6D2;
 }
 
 .kanban-coluna-header h3 {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #F1ADFD;
-  text-transform: uppercase;
+  color: #F5E6D2;
   letter-spacing: 0.06em;
+  font-family: 'Abel', sans-serif;
+  font-size: 20px;
+  font-weight: normal;
 }
 
 /* ── CONTADOR DE TAREFAS NA COLUNA ──────────────────────── */
 .kanban-contador {
-  background-color: #94A3B8;
-  color: #EDDEE0;
+  background-color: #374965;
+  color: #F5E6D2;
   font-size: 0.75rem;
   font-weight: 700;
   padding: 1px 7px;
   border-radius: 10px;
+}
+
+.kanban-btn-add{
+  background-color: #F5E6D2;
 }
 
 /* ── LISTA DE TAREFAS DENTRO DA COLUNA ──────────────────── */
@@ -149,4 +166,5 @@ footer {
   flex-direction: column;
   gap: 8px;
   min-height: 60px; 
+  background-color: #79dc79;
 } */

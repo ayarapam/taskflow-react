@@ -1,42 +1,15 @@
 
-header{
-    text-align: center;
-}
-
-
-/* header .logo {
-  background-color: #374965;
-
-} */
-
-/* 
-header .banner {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-}
-
-header .banner img {
-  display: block;
-  width: 100%;
-  height: auto;
-} */
-
-
-/* tests */
-
 body {
   margin: 0;
   padding: 0;
 }
 
-
-
 .header {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  height: 300px;
-  background-color: #374965; /* Altere para a cor desejada aqui */
+  width: 100%;
+  margin-left: 0;
+  height: 230px;
+  background-color: rgba(55, 73, 101, 50%);
   
   /* Cria o efeito de ondas na parte inferior */
   --mask:
@@ -46,18 +19,19 @@ body {
           mask: var(--mask);
 }
 
+
 /* Logo */
 .logo {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .logo img {
   width: 240px;
   height: auto;
+  transform: translateY(30px);
 }
 
 

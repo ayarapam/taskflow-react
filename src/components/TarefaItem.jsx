@@ -1,5 +1,6 @@
 import styles from './TarefaItem.module.css'
 
+
 function TarefaItem({
   texto,
   concluida = false,
@@ -32,7 +33,7 @@ function TarefaItem({
   const modoKanban = onMover !== null;
 
   return (
-    <li className={classeItem} style={estiloCor} onDoubleClick={onEditar}>
+    <li className={classeItem} style={estiloCor}>
       <dir className={styles.conteudo}>
         <span className={classeTexto}>{texto}</span>
         {/* {cidade && <span className={styles.cidade}>{cidade}</span>} */}
@@ -86,6 +87,11 @@ function TarefaItem({
             //onClick={e => { e.stopPropagation(); onDeletar();}}>
             onClick={onDeletar} title="Excluir tarefa">
             X
+          </button>
+
+          <button className={styles.btnDeletar} 
+          onClick={onEditar} title='Editar Tarefa'>
+            ✎
           </button>
 
         </div>

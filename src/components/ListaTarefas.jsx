@@ -27,6 +27,7 @@ function ListaTarefas({
   <TarefaItem
     key={tarefa.id}
     texto={tarefa.texto}
+    concluida={tarefa.coluna === "concluido"}
     prioridade={CLASSE_PRIORIDADE[tarefa.idprioridade] || 'media'}
     //rotuloPrioridade={prioridade?.descricao}
     rotuloPrioridade={tarefa.prioridade}     // texto do badge

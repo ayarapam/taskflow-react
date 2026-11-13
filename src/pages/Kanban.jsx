@@ -179,7 +179,7 @@ function Kanban() {
   // 6. INTERFACE
   // =============================================================
   return (
-    <div className='container' id='app'>
+    <div id='app'>
 
       {/* ─────────────────────────────────────────────────────
       6.1 Cabeçalho
@@ -250,7 +250,7 @@ function Kanban() {
                 COLUNA: EM ANDAMENTO
             ================================================= */}
 
-            <div className="kanban-coluna">
+            <div className="kanban-coluna" id='andamento'>
               <div className="kanban-coluna-header">
                 <h3>Em Andamento</h3>
                 <span className="kanban-contador">
