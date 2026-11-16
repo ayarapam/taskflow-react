@@ -11,7 +11,14 @@ function ListaTarefas({
   onMover = null,
   colunaAnterior = null,
   colunaProxima = null,
-}) {
+
+  
+}) 
+{
+  const tarefasOrdenadas = [...tarefas].sort((a, b) => {
+  return Number(b.idprioridade) - Number(a.idprioridade);
+
+});
   return (
     <section id="lista-section">
       {tarefas.length === 0 && (
@@ -22,7 +29,7 @@ function ListaTarefas({
 
     {tarefas.length > 0 && (
         <ul id="lista-tarefas">
-          {tarefas.map(tarefa => (
+          {tarefasOrdenadas.map(tarefa => (
 
   <TarefaItem
     key={tarefa.id}

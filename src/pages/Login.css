@@ -8,7 +8,7 @@
 }
 
 .login-card {
-  background-color: rgba(131, 83, 235, 20%); 
+  background-color: rgba(55, 73, 101, 50%);
   border-radius: 12px;
   padding: 40px 36px;
   width: 100%;
@@ -19,7 +19,7 @@
 }
 
 .login-logo      { 
-  color: #F1ADFD;
+  color: #F5E6D2;
   font-size: 2rem;
   text-align: center;
 }
@@ -31,7 +31,7 @@
 }
 
 .login-input { 
-  background: #EDDEE0; 
+  background: #F5E6D2; 
   color: #12617C;
   border-radius: 6px;
   padding: 11px 14px; 
@@ -39,7 +39,7 @@
   outline: none; 
 }
 
-.login-input:focus { background-color: #EDDEE0; }
+.login-input:focus { background-color: #F5E6D2; }
 
 .login-erro { 
   color: #EF4444; 
@@ -48,8 +48,8 @@
 }
 
 .login-btn { 
-  background: #F1ADFD; 
-  color: #EDDEE0; 
+  background: #374965; 
+  color: #F5E6D2; 
   border: none;
   border-radius: 6px; 
   padding: 12px;

@@ -24,12 +24,14 @@ function Sidebar() {
 
             <nav className={styles.nav}>
                 <NavLink to="/" className={linkClass}>
-
                     <span>Dashboard</span>
+                </NavLink>
+                
+                <NavLink to="/projetos" className={linkClass}>
+                    <span>Projetos</span>
                 </NavLink>
 
                 <NavLink to="/sobre" className={linkClass}>
-
                     <span>Sobre</span>
                 </NavLink>
             </nav>
@@ -40,7 +42,7 @@ function Sidebar() {
                 </span>
 
                 <button onClick={handleLogout}>
-                     Sair
+                    Sair
                 </button>
             </div>
 

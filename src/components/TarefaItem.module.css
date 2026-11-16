@@ -6,12 +6,15 @@
     display: flex;
     flex-direction: column;
     background-color: rgba(245, 230, 210, 12%);
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
     margin-bottom: 8px;
     border-radius: 10px;
     border: 2px solid var(--cor-prioridade);
     list-style: none;
     min-width: 0;
-    padding: 25px;
+    padding: 12px 18px;
 }
 
 .textoTarefa {
@@ -34,11 +37,12 @@
 .acoes {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 5px 0;
     gap: 6px;
-    width: auto;
-    flex-shrink: 0;
+    flex-wrap: wrap;
     justify-content: flex-end;
+    width: 100%;
+    min-width: 0;
 }
 
 .badge-prioridade {
@@ -51,7 +55,8 @@
     background-color: color-mix(in srgb, var(--cor-prioridade) 15%, transparent);
 }
 
-.btnDeletar, .btnMover {
+.btnDeletar,
+.btnMover {
     color: #fff;
     background: #374965;
     border-radius: 6px;
@@ -60,7 +65,8 @@
     transition: all 0.2s;
 }
 
-.btnDeletar:hover, .btnMover:hover {
+.btnDeletar:hover,
+.btnMover:hover {
     color: #94a3b8;
     border-color: #94a3b8;
 }
@@ -103,12 +109,12 @@
 }
 
 .concluida {
-  background-color: rgba(34, 197, 94, 0.08);
-  border: #94a3b8;
-  opacity: 0.75;
+    background-color: rgba(34, 197, 94, 0.08);
+    border: #94a3b8;
+    opacity: 0.75;
 }
 
 .texto-tarefa {
-  color: #94a3b8;
-  font-weight: 400;
+    color: #94a3b8;
+    font-weight: 400;
 }

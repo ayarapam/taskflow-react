@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+
+.pagina {
+    min-height: 100vh;
+    color: #26334b;
+    font-family: 'abel', sans-serif;
+}
+
+.conteudo {
+    width: min(1180px, calc(100% - 48px));
+    margin: 28px auto 48px;
+}
+
+.resumo {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.resumo>div {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    border: 1px solid rgba(55, 73, 101, .15);
+    border-radius: 14px;
+    background: rgba(245, 230, 210, .45);
+    color: #52627a;
+}
+
+.resumoNumero {
+    color: #374965;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.ferramentas {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.ferramentas input,
+.ferramentas select {
+    min-width: 0;
+    padding: 11px 14px;
+    border: 1px solid #cbd3df;
+    border-radius: 9px;
+    background: #fff;
+    color: #26334b;
+}
+
+.ferramentas input {
+    flex: 1;
+}
+
+.ferramentas select {
+    min-width: 180px;
+}
+
+.botaoPrimario {
+    border: 0;
+    border-radius: 9px;
+    padding: 11px 17px;
+    background: #374965;
+    color: #fff;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.botaoPrimario:hover {
+    background: #263750;
+}
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.cardProjeto {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid rgba(55, 73, 101, .16);
+    border-radius: 14px;
+    background: rgba(245, 230, 210, .34);
+    box-shadow: 0 5px 18px rgba(38, 51, 75, .06);
+}
+
+.cardTopo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icone {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: rgba(142, 255, 254, .38);
+    color: #374965;
+    font-size: 1.5rem;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #e0f3e9;
+    color: #24734a;
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.statusConcluido {
+    background: #e6eaf1;
+    color: #53627a;
+}
+
+.cardProjeto h2 {
+    margin: 17px 0 7px;
+    color: #263750;
+    font-size: 1.2rem;
+    overflow-wrap: anywhere;
+}
+
+.descricao {
+    min-height: 42px;
+    margin: 0 0 20px;
+    color: #374965;
+    font-size: .92rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.progressoTexto {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #374965;
+    font-size: .84rem;
+}
+
+.progressoTexto strong {
+    color: #374965;
+}
+
+.trilho {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #dce2e9;
+}
+
+.trilho span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #5cb9b4;
+    transition: width .2s ease;
+}
+
+.cardRodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 17px;
+    color: #374965;
+    font-size: .78rem;
+}
+
+.cardRodape>div {
+    display: flex;
+    gap: 6px;
+}
+
+.cardRodape button,
+.acoesModal button {
+    padding: 7px 10px;
+    border: 1px solid #cbd3df;
+    border-radius: 7px;
+    background: #fff;
+    color: #374965;
+    cursor: pointer;
+}
+
+.cardRodape .botaoExcluir {
+    color: #a23f49;
+}
+
+.vazio,
+.estado {
+    padding: 55px 20px;
+    text-align: center;
+    color: #68758a;
+}
+
+.vazio {
+    border: 1px dashed #b9c4d2;
+    border-radius: 14px;
+}
+
+.vazio>span {
+    color: #6caaa8;
+    font-size: 2.4rem;
+}
+
+.vazio h2 {
+    margin-bottom: 5px;
+    color: #374965;
+}
+
+.vazio p {
+    margin-bottom: 20px;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(20, 30, 45, .55);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(460px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 25px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, .2);
+}
+
+.modal h2 {
+    margin: 0 0 8px;
+    color: #374965;
+}
+
+.modal label {
+    color: #46566f;
+    font-size: .9rem;
+    font-weight: 650;
+}
+
+.modal input,
+.modal textarea,
+.modal select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid #cbd3df;
+    border-radius: 8px;
+    color: #26334b;
+    font: inherit;
+}
+
+.acoesModal {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 10px;
+}
+
+.erro {
+    color: #b42332;
+    font-size: .9rem;
+}
+
+.rodape {
+    padding: 18px;
+    color: #778397;
+    text-align: center;
+    font-size: .85rem;
+}
+
+@media (max-width: 650px) {
+    .conteudo {
+        width: calc(100% - 28px);
+        margin-top: 18px;
+    }
+
+    .resumo {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .resumo>div {
+        padding: 12px 15px;
+    }
+
+    .resumoNumero {
+        font-size: 1.4rem;
+    }
+
+    .ferramentas {
+        flex-wrap: wrap;
+    }
+
+    .ferramentas input {
+        flex-basis: 100%;
+    }
+
+    .ferramentas select {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .cardRodape {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

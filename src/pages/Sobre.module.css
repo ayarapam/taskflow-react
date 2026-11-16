@@ -1,15 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
 .container {
   width: 90%;
   max-width: 80%;
   margin: 60px auto;
   padding: 40px;
-  background-color: #4B127C;
+  background-color: #374965;
   border-radius: 12px;
-  color: #EDDEE0;
+  color: #eddee0;
+  font-family: 'abel', sans-serif;
 }
 
 .container h1 {
-  color: #F1ADFD;
+  color: #eddee0;
   font-size: 2.2rem;
   margin-bottom: 20px;
 }
@@ -19,8 +24,9 @@
   font-size: 1.3rem;
   margin-top: 30px;
   margin-bottom: 12px;
-  border-bottom: 1px solid #F1ADFD;
+  border-bottom: 1px solid #94a3b8;
   padding-bottom: 8px;
+  font-weight: normal;
 }
 
 .container p {
@@ -39,6 +45,6 @@
 }
 
 .container li::marker {
-  color: #F1ADFD;
+  color: #94a3b8;
 }
 

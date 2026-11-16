@@ -3,6 +3,7 @@ import './App.css';
 import Sobre from './pages/Sobre';
 import Login from './pages/Login';
 import TarefaV1 from './pages/Kanban';
+import Projetos from './pages/Projetos';
 import Sidebar from './components/Sidebar';
 import RotaPrivada from './components/RotaPrivada';
 import { useAuth } from "./contexts/AuthContext";
@@ -48,6 +49,8 @@ function App() {
               </RotaPrivada>
             }
           />
+
+          <Route path="/projetos" element={<RotaPrivada><Projetos /></RotaPrivada>} />
 
           <Route path="/sobre" element={<Sobre />} />
 
