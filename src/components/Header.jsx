@@ -1,4 +1,5 @@
 import styles from './Header.module.css';
+import logo from '../assets/logo.png';
 
 function Header() {
     return (
@@ -6,8 +7,8 @@ function Header() {
 
             <div className={styles.logo}>
                 <img 
-                src="/src/assets/logo.png" 
-                alt="Logo do TaskFlow" />
+                    src={logo}
+                    alt="Logo do TaskFlow" />
             </div>
 
         </header>

@@ -29,6 +29,13 @@ body {
 }
 
 .logo img {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.logo img {
   width: 240px;
   height: auto;
   transform: translateY(30px);
