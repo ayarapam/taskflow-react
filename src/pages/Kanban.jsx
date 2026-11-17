@@ -312,6 +312,15 @@ function Kanban() {
         </>)}
       </main>
 
+      <div className='fundos'>
+          <select>
+            <option><img></img></option>
+            <option value='alta'>Alta</option>
+            <option value='media'>Media</option>
+            <option value='baixa'>Baixa</option>
+          </select>
+      </div>
+
       {/* ─────────────────────────────────────────────────────
         6.5 Rodapé
     ───────────────────────────────────────────────────── */}

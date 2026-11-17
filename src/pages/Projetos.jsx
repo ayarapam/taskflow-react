@@ -104,6 +104,7 @@ function Projetos() {
       setErro(mensagensDeErro(e).join(' '));
     }
   }
+  
 
   return (
     <div className={styles.pagina}>
@@ -111,7 +112,7 @@ function Projetos() {
       <main className={styles.conteudo}>
         <section className={styles.resumo}>
           <div><span className={styles.resumoNumero}>{projetos.length}</span><span>Projetos cadastrados</span></div>
-          <div><span className={styles.resumoNumero}>{tarefas.length}</span><span>Tarefas no total</span></div>
+          <div><span className={styles.resumoNumero}>{tarefas.filter(tarefa => tarefa.coluna !== 'concluido').length}</span><span>Tarefas no total</span></div>
           <div><span className={styles.resumoNumero}>{projetos.filter((p) => (p.status || 'ativo') === 'ativo').length}</span><span>Projetos ativos</span></div>
         </section>
 
@@ -138,7 +139,6 @@ function Projetos() {
               return (
                 <article className={styles.cardProjeto} key={projeto.id}>
                   <div className={styles.cardTopo}>
-                    <span className={styles.icone}>▦</span>
                     <span className={`${styles.status} ${status === 'concluido' ? styles.statusConcluido : ''}`}>{status === 'concluido' ? 'Concluído' : 'Ativo'}</span>
                   </div>
                   <h2>{projeto.nome}</h2>
