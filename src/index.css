@@ -116,9 +116,9 @@ footer {
 
 /* ── COLUNA INDIVIDUAL ───────────────────────────────────── */
 .kanban-coluna {
-  flex: 1;
-  min-width: 0;
-  max-width: 100%;
+  flex: 1 0 280px;
+  min-width: 280px;
+  max-width: 360px;
   border-radius: 8px;
   padding: 12px;
   background-color: rgba(55, 73, 101, 50%);
