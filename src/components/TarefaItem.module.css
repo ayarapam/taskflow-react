@@ -118,3 +118,14 @@
     color: #94a3b8;
     font-weight: 400;
 }
+
+.tarefa[draggable="true"] {
+    cursor: grab;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.tarefa[draggable="true"]:active {
+    cursor: grabbing;
+    opacity: 0.5;
+    transform: scale(0.97);
+}

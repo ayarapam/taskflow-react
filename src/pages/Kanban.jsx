@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import ListaTarefas from '../components/ListaTarefas';
 import { useState, useEffect } from 'react';
 import ModalTarefa from '../components/ModalTarefa';
-import api, { mensagensDeErro }from '../api';
+import api, { mensagensDeErro } from '../api';
 
 // =============================================================
 // 1. ESTADO DA APLICAÇÃO
@@ -27,6 +27,8 @@ function Kanban() {
   const [listaPrioridades, setListaPrioridades] = useState([]);
   const [listaUsuarios, setListaUsuarios] = useState([]);
   const [listaProjetos, setListaProjetos] = useState([]);
+  const [colunaAlvo, setColunaAlvo] = useState(null);
+
 
   // =============================================================
   // 2. EFEITOS
@@ -112,12 +114,12 @@ function Kanban() {
   // ──────────────────────────────────────────────────────  
 
   async function salvarTarefa(dados) {
-    if (dados.id){
+    if (dados.id) {
       const resposta = await api.put(`/tarefas/${dados.id}`, dados);
       setTarefas(tarefas.map((t) => (
-        t.id === dados.id 
-        ? resposta.data 
-        : t)));
+        t.id === dados.id
+          ? resposta.data
+          : t)));
     } else {
       const resposta = await api.post('/tarefas', dados);
       setTarefas([...tarefas, resposta.data]);
@@ -140,8 +142,28 @@ function Kanban() {
   // ───────────────────────────────────────────────────────────
   // 4.3 Mover tarefa entre colunas
   // ───────────────────────────────────────────────────────────
-   const moverTarefa = async (id, novaColuna) => {
-      const tarefa = tarefas.find((t) => t.id === id);
+  //  const moverTarefa = async (id, novaColuna) => {
+  //     const tarefa = tarefas.find((t) => t.id === id);
+  //   try {
+  //     const resposta = await api.put(
+  //       `/tarefas/${id}`,
+  //       {
+  //         ...tarefa,
+  //         coluna: novaColuna
+  //       }
+  //     );
+  //     setTarefas(tarefas.map((t) => (t.id === id ? resposta.data : t)));
+  //   } catch (e) {
+  //     alert(mensagensDeErro(e).join("\n"));}
+  // };
+
+  async function moverTarefa(id, novaColuna) {
+    const tarefa = tarefas.find(
+      (t) => String(t.id) === String(id)
+    );
+
+    if (!tarefa || tarefa.coluna === novaColuna) return;
+
     try {
       const resposta = await api.put(
         `/tarefas/${id}`,
@@ -150,10 +172,36 @@ function Kanban() {
           coluna: novaColuna
         }
       );
-      setTarefas(tarefas.map((t) => (t.id === id ? resposta.data : t)));
+
+      setTarefas((tarefasAtuais) =>
+        tarefasAtuais.map((t) =>
+          String(t.id) === String(id) ? resposta.data : t
+        )
+      );
+
     } catch (e) {
-      alert(mensagensDeErro(e).join("\n"));}
-  };
+      alert(mensagensDeErro(e).join("\n"));
+    }
+  }
+
+  async function soltarTarefa(e, novaColuna) {
+    e.preventDefault();
+    const id = Number(e.dataTransfer.getData('tarefaId'));
+    setColunaAlvo(null);
+    if (!id) return;
+    moverTarefa(id, novaColuna);
+  }
+
+  function destacarColuna(e, coluna) {
+    e.preventDefault();
+    setColunaAlvo(coluna);
+  }
+
+  function removerDestaque(e) {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setColunaAlvo(null);
+    }
+  }
 
   // =============================================================
   // 5. FILTROS
@@ -163,18 +211,18 @@ function Kanban() {
     if (filtroPrioridade === "todas") return true;
 
     const prioridade = tarefa.prioridade
-        ?.toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+      ?.toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
 
     const prioridadeNormalizada = {
-        baixo: "baixa",
-        medio: "media",
-        alta: "alta"
+      baixo: "baixa",
+      medio: "media",
+      alta: "alta"
     };
 
     return prioridadeNormalizada[prioridade] === filtroPrioridade;
-});
+  });
   // =============================================================
   // 6. INTERFACE
   // =============================================================
@@ -221,7 +269,13 @@ function Kanban() {
       ─────────────────────────────────────────────────── */}
         {!carregando && !erro && (<>
           <div className="kanban-quadro">
-            <div className="kanban-coluna">
+            <div
+              className={`kanban-coluna ${colunaAlvo === 'afazer' ? 'coluna-destacada' : ''}`}
+              onDragEnter={(e) => destacarColuna(e, 'afazer')}
+              onDragOver={(e) => destacarColuna(e, 'afazer')}
+              onDragLeave={removerDestaque}
+              onDrop={(e) => soltarTarefa(e, 'afazer')}
+            >
 
               {/* =================================================
                   COLUNA: A FAZER
@@ -250,7 +304,14 @@ function Kanban() {
                 COLUNA: EM ANDAMENTO
             ================================================= */}
 
-            <div className="kanban-coluna" id='andamento'>
+            <div
+              className={`kanban-coluna ${colunaAlvo === 'andamento' ? 'coluna-destacada' : ''}`}
+              id="andamento"
+              onDragEnter={(e) => destacarColuna(e, 'andamento')}
+              onDragOver={(e) => destacarColuna(e, 'andamento')}
+              onDragLeave={removerDestaque}
+              onDrop={(e) => soltarTarefa(e, 'andamento')}
+            >
               <div className="kanban-coluna-header">
                 <h3>Em Andamento</h3>
                 <span className="kanban-contador">
@@ -275,7 +336,13 @@ function Kanban() {
                 COLUNA: CONCLUÍDO
             ================================================= */}
 
-            <div className="kanban-coluna">
+            <div
+              className={`kanban-coluna ${colunaAlvo === 'concluido' ? 'coluna-destacada' : ''}`}
+              onDragEnter={(e) => destacarColuna(e, 'concluido')}
+              onDragOver={(e) => destacarColuna(e, 'concluido')}
+              onDragLeave={removerDestaque}
+              onDrop={(e) => soltarTarefa(e, 'concluido')}
+            >
               <div className="kanban-coluna-header">
                 <h3>Concluído</h3>
                 <span className="kanban-contador">
