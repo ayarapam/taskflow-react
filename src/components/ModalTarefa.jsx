@@ -13,6 +13,7 @@ function ModalTarefa({
 
     const { usuario } = useAuth(); // logado = responsável padrão
     const [texto, setTexto] = useState("");
+    const [descricao, setDescricao] = useState("");
     const [idPrioridade, setIdPrioridade] = useState(2); // Médio
     const [idUsuario, setIdUsuario] = useState("");
     const [idProjeto, setIdProjeto] = useState("");
@@ -23,11 +24,13 @@ function ModalTarefa({
         setErros([]);
         if (tarefa) {
             setTexto(tarefa.texto);
+            setDescricao(tarefa.descricao || "");
             setIdPrioridade(tarefa.idprioridade);
             setIdUsuario(tarefa.usuario_id);
             setIdProjeto(tarefa.projeto_id);
         } else {
             setTexto('');
+            setDescricao("");
             setIdPrioridade(8); // 8 = Médio
             setIdUsuario(usuario?.id || usuarios[0]?.id || "");
             setIdProjeto(projetos[0]?.id || "");
@@ -63,6 +66,7 @@ function ModalTarefa({
                 ...tarefa,
                 id: tarefa?.id,
                 texto,
+                descricao,
                 coluna: tarefa?.coluna || coluna,
                 idprioridade: paraNumero(idPrioridade),
                 usuario_id: paraNumero(idUsuario),
@@ -85,8 +89,19 @@ function ModalTarefa({
 
                 <div className={styles.campo}>
                     <label htmlFor="tarefa-texto">Tarefa</label>
-                    <textarea id="tarefa-texto" placeholder="Descreva a tarefa" rows={4}
+                    <textarea id="tarefa-texto" placeholder="Descreva a tarefa" rows={1}
                         value={texto} onChange={(e) => setTexto(e.target.value)} />
+                </div>
+                <div className={styles.campo}>
+                    <label htmlFor="tarefa-descricao">Descrição</label>
+
+                    <textarea
+                        id="tarefa-descricao"
+                        placeholder="Adicione detalhes sobre esta tarefa..."
+                        rows={5}
+                        value={descricao}
+                        onChange={(e) => setDescricao(e.target.value)}
+                    />
                 </div>
 
                 <div className={styles.campo}>
