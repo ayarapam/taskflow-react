@@ -73,11 +73,39 @@ describe('TarefaItem', () => {
     test('clicar no X chama o onDeletar', async () => {
         const user = userEvent.setup();
         const onDeletar = vi.fn();
+
+        vi.spyOn(window, 'confirm').mockReturnValue(true);
+
         render(<TarefaItem texto="Estudar" onDeletar={onDeletar} />);
 
         await user.click(screen.getByRole('button', { name: 'X' }));
 
+        expect(window.confirm).toHaveBeenCalled();
         expect(onDeletar).toHaveBeenCalledTimes(1);
+
+        vi.restoreAllMocks();
+    });
+
+    test('Cancelar a confirmação não exclui a tarefa', async () => {
+        const user = userEvent.setup();
+        const onDeletar = vi.fn();
+
+        vi.spyOn(window, 'confirm').mockReturnValue(false);
+
+        render(
+            <ListaTarefas
+                tarefas={tarefasExemplo()}
+                onDeletar={onDeletar}
+            />
+        );
+
+        const botoesX = screen.getAllByRole('button', { name: 'X' });
+        await user.click(botoesX[1]);
+
+        expect(window.confirm).toHaveBeenCalled();
+        expect(onDeletar).not.toHaveBeenCalled();
+
+        vi.restoreAllMocks();
     });
 
     test('duplo clique no texto chama o onEditar', async () => {
@@ -85,7 +113,7 @@ describe('TarefaItem', () => {
         const onEditar = vi.fn();
         render(<TarefaItem texto="Estudar" onEditar={onEditar} />);
 
-        await user.click(screen.getByRole('button', {name: '✎'}));
+        await user.click(screen.getByRole('button', { name: '✎' }));
 
         expect(onEditar).toHaveBeenCalledTimes(1);
     });

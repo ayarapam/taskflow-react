@@ -52,14 +52,22 @@ describe('ListaTarefas', () => {
     test('X da segunda tarefa chama o onDeletar com o id 2', async () => {
         const user = userEvent.setup();
         const onDeletar = vi.fn();
+
+        vi.spyOn(window, 'confirm').mockReturnValue(true);
+
         render(
-            <ListaTarefas tarefas={tarefasExemplo()} onDeletar={onDeletar} />
+            <ListaTarefas 
+            tarefas={tarefasExemplo()} 
+            onDeletar={onDeletar} />
         );
 
         const botoesX = screen.getAllByRole('button', { name: 'X' });
         await user.click(botoesX[1]);
 
         expect(onDeletar).toHaveBeenCalledWith(2);
+        expect(window.confirm).toHaveBeenCalled();
+
+        vi.restoreAllMocks();
     });
 
 });
