@@ -11,8 +11,6 @@ function ListaTarefas({
   onMover = null,
   colunaAnterior = null,
   colunaProxima = null,
-
-  
 }) 
 {
   const tarefasOrdenadas = [...tarefas].sort((a, b) => {
@@ -33,6 +31,7 @@ function ListaTarefas({
 
   <TarefaItem
     key={tarefa.id}
+    id={tarefa.id}
     texto={tarefa.texto}
     concluida={tarefa.coluna === "concluido"}
     prioridade={CLASSE_PRIORIDADE[tarefa.idprioridade] || 'media'}

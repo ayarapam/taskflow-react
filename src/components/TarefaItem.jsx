@@ -2,6 +2,7 @@ import styles from './TarefaItem.module.css'
 
 
 function TarefaItem({
+  id,
   texto,
   concluida = false,
   //prioridade = 'media', 
@@ -33,7 +34,16 @@ function TarefaItem({
   const modoKanban = onMover !== null;
 
   return (
-    <li className={classeItem} style={estiloCor}>
+    <li
+      className={classeItem}
+      style={estiloCor}
+      draggable={modoKanban}
+      onDragStart={(e) => {
+        e.dataTransfer.setData('tarefaId', e.currentTarget.dataset.id);
+        e.dataTransfer.effectAllowed = 'move';
+      }}
+      data-id={id}
+    >
       <dir className={styles.conteudo}>
         <span className={classeTexto}>{texto}</span>
         {/* {cidade && <span className={styles.cidade}>{cidade}</span>} */}
@@ -44,7 +54,7 @@ function TarefaItem({
           {usuario && (
             <span className={styles.infoItem}>
               <span className={styles.infoRotulo}>Responsável</span>
-               <span className={styles.infoValor}>{usuario}</span>
+              <span className={styles.infoValor}>{usuario}</span>
             </span>
           )}
           {projeto && (
@@ -89,8 +99,8 @@ function TarefaItem({
             X
           </button>
 
-          <button className={styles.btnDeletar} 
-          onClick={onEditar} title='Editar Tarefa'>
+          <button className={styles.btnDeletar}
+            onClick={onEditar} title='Editar Tarefa'>
             ✎
           </button>
 
