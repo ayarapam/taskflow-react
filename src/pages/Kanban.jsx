@@ -192,12 +192,12 @@ function Kanban() {
     moverTarefa(id, novaColuna);
   }
 
-  function destacarColuna(e, coluna) {
+  async function destacarColuna(e, coluna) {
     e.preventDefault();
     setColunaAlvo(coluna);
   }
 
-  function removerDestaque(e) {
+  async function removerDestaque(e) {
     if (!e.currentTarget.contains(e.relatedTarget)) {
       setColunaAlvo(null);
     }
