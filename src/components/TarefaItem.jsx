@@ -95,7 +95,17 @@ function TarefaItem({
 
           <button className={styles.btnDeletar}
             //onClick={e => { e.stopPropagation(); onDeletar();}}>
-            onClick={onDeletar} title="Excluir tarefa">
+            // onClick={onDeletar} title="Excluir tarefa">
+              onClick={() => {
+                const confirmar = window.confirm(
+                  'Tem certeza que deseja excluir esta tarefa?'
+                );
+
+                if (confirmar) {
+                  onDeletar();
+                }
+              }}
+            >
             X
           </button>
 
