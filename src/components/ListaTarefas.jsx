@@ -11,49 +11,52 @@ function ListaTarefas({
   onMover = null,
   colunaAnterior = null,
   colunaProxima = null,
-}) 
-{
-  const tarefasOrdenadas = [...tarefas].sort((a, b) => {
-  return Number(b.idprioridade) - Number(a.idprioridade);
+}) {
 
-});
+  const tarefasOrdenadas = [
+    ...tarefas.filter(tarefa => tarefa.coluna !== 'concluido')
+      .sort((a, b) => Number(b.idprioridade) - Number(a.idprioridade)),
+
+    ...tarefas.filter(tarefa => tarefa.coluna === 'concluido')
+  ];
+  
   return (
     <section id="lista-section">
       {tarefas.length === 0 && (
-      <p className="msg-vazia">
-        Nenhuma tarefa aqui ainda.
-      </p>
-    )}
+        <p className="msg-vazia">
+          Nenhuma tarefa aqui ainda.
+        </p>
+      )}
 
-    {tarefas.length > 0 && (
+      {tarefas.length > 0 && (
         <ul id="lista-tarefas">
           {tarefasOrdenadas.map(tarefa => (
 
-  <TarefaItem
-    key={tarefa.id}
-    id={tarefa.id}
-    texto={tarefa.texto}
-    concluida={tarefa.coluna === "concluido"}
-    prioridade={CLASSE_PRIORIDADE[tarefa.idprioridade] || 'media'}
-    //rotuloPrioridade={prioridade?.descricao}
-    rotuloPrioridade={tarefa.prioridade}     // texto do badge
-    corPrioridade={tarefa.prioridade_cor}
-    usuario={tarefa.usuario || 'Sem responsável'}
-    projeto={tarefa.projeto || 'Sem projeto'}
-    onDeletar={() => onDeletar(tarefa.id)}
-    onEditar={onEditar ? () => onEditar(tarefa) : null}
-    onMover={
-      onMover
-        ? (novaColuna) => onMover(tarefa.id, novaColuna)
-        : null
-    }
-    colunaAnterior={colunaAnterior}
-    colunaProxima={colunaProxima}
-  />
+            <TarefaItem
+              key={tarefa.id}
+              id={tarefa.id}
+              texto={tarefa.texto}
+              concluida={tarefa.coluna === "concluido"}
+              prioridade={CLASSE_PRIORIDADE[tarefa.idprioridade] || 'media'}
+              //rotuloPrioridade={prioridade?.descricao}
+              rotuloPrioridade={tarefa.prioridade}     // texto do badge
+              corPrioridade={tarefa.prioridade_cor}
+              usuario={tarefa.usuario || 'Sem responsável'}
+              projeto={tarefa.projeto || 'Sem projeto'}
+              onDeletar={() => onDeletar(tarefa.id)}
+              onEditar={onEditar ? () => onEditar(tarefa) : null}
+              onMover={
+                onMover
+                  ? (novaColuna) => onMover(tarefa.id, novaColuna)
+                  : null
+              }
+              colunaAnterior={colunaAnterior}
+              colunaProxima={colunaProxima}
+            />
           ))}
         </ul>
       )}
-      </section>
+    </section>
   );
 }
 

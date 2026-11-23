@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar';
 import RotaPrivada from './components/RotaPrivada';
 import { useAuth } from "./contexts/AuthContext";
 import { useState } from 'react';
+import AlterarFundo from './components/AlterarFundo';
 
 function App() {
   const { token } = useAuth();
@@ -29,6 +30,9 @@ function App() {
           </button>
 
           {sidebarAberto && <Sidebar />}
+
+          <AlterarFundo/>
+
         </>
       )}
 
