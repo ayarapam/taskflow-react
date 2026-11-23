@@ -106,8 +106,8 @@
 
 /* MODAL */
 .card {
-    background: #4B127C;
-    border: 1px solid #F1ADFD;
+    background: #374965;
+    border: 1px solid #F5E6D2;
     border-radius: 12px;
     padding: 28px 32px;
     width: 100%;
@@ -124,7 +124,7 @@
 
 /* TÍTULO */
 .card h2 {
-    color: #F1ADFD;
+    color: #F5E6D2;
     font-size: 1.3rem;
     font-weight: 700;
     margin: 0 0 8px;
@@ -150,8 +150,8 @@
 .card select,
 .card textarea {
     background: #EDDEE0;
-    color: #0E4E63;
-    border: 1px solid #F1ADFD;
+    color: #374965;
+    border: 1px solid #F5E6D2;
     border-radius: 10px;
     padding: 12px 14px;
     font-size: 1rem;
@@ -164,7 +164,7 @@
 .card input:focus,
 .card select:focus,
 .card textarea:focus {
-    border-color: #F1ADFD;
+    border-color: #F5E6D2;
 }
 
 .card textarea {
@@ -198,7 +198,7 @@
 
 .botoes button:last-child {
     background: #EDDEE0;
-    color: #4B127C;
+    color: #374965;
     border: none;
 }
 

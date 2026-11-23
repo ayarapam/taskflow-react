@@ -70,4 +70,26 @@ describe('ListaTarefas', () => {
         vi.restoreAllMocks();
     });
 
+    test('Cancelar a confirmação não exclui a tarefa', async () => {
+        const user = userEvent.setup();
+        const onDeletar = vi.fn();
+
+        vi.spyOn(window, 'confirm').mockReturnValue(false);
+
+        render(
+            <ListaTarefas
+                tarefas={tarefasExemplo()}
+                onDeletar={onDeletar}
+            />
+        );
+
+        const botoesX = screen.getAllByRole('button', { name: 'X' });
+        await user.click(botoesX[1]);
+
+        expect(window.confirm).toHaveBeenCalled();
+        expect(onDeletar).not.toHaveBeenCalled();
+
+        vi.restoreAllMocks();
+    });
+
 });
