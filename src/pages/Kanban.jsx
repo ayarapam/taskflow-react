@@ -285,7 +285,9 @@ function Kanban() {
                 <span className="kanban-contador">
                   {tarefas.filter((tarefa) => tarefa.coluna === "afazer").length}
                 </span>
-                <button className='kanban-btn-add'
+                <button
+                  className='kanban-btn-add'
+                  title="Nova tarefa em A Fazer"
                   onClick={() => abrirModalCriar('afazer')}>+</button>
               </div>
 

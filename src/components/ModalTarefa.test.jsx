@@ -115,7 +115,7 @@ describe('ModalTarefa', () => {
     test('a API recusa: mostra os erros e não fecha', async () => {
         const user = userEvent.setup();
         const erro400 = {
-            response: { data: { erro: { detalhes: ['texto é obrigatório'] } } },
+            response: { data: { erro: { detalhes: ['O campo texto é obrigatório'] } } },
         };
         const onSalvar = vi.fn().mockRejectedValue(erro400);
         const onFechar = vi.fn();
@@ -123,7 +123,7 @@ describe('ModalTarefa', () => {
 
         await user.click(screen.getByRole('button', { name: 'Salvar' }));
 
-        expect(await screen.findByText('texto é obrigatório'))
+        expect(await screen.findByText('O campo texto é obrigatório'))
             .toBeInTheDocument();
 
         expect(onFechar).not.toHaveBeenCalled();
